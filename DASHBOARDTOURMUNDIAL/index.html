@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master of Puppets Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white min-h-screen font-sans p-8">
+
+    <header class="text-center mb-10">
+        <h1 class="text-5xl font-extrabold text-red-600 tracking-wider uppercase mb-2">MASTER OF PUPPETS</h1>
+        <p class="text-gray-400 mt-2">Dashboard del Tour Mundial ⚡</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <section class="bg-zinc-900 p-6 rounded-2xl shadow-lg border border-zinc-800 flex flex-col justify-between">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-red-500">🎟️ Taquilla VIP</h2>
+                <form id="vipForm" class="space-y-5">
+                    <div>
+                        <label class="block mb-2 font-semibold text-gray-200">Nombre en el Gafete VIP</label>
+                        <input type="text" id="nombre" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:outline-none focus:border-red-500 transition" placeholder="Escribe tu nombre...">
+                        <p id="contador" class="text-sm text-gray-400 mt-1">0/20 caracteres</p>
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-semibold text-gray-200">Zona</label>
+                        <select id="zona" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:outline-none focus:border-red-500 transition">
+                            <option value="">-- Elige una zona --</option>
+                            <option value="100">General ($100)</option>
+                            <option value="250">Gradas ($250)</option>
+                            <option value="500">Snake Pit VIP ($500)</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="mt-6">
+                <div class="mb-4 bg-black p-3 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <span class="text-xl font-bold text-gray-300">Precio Total:</span>
+                    <span id="precio" class="text-2xl font-black text-white">$0</span>
+                </div>
+                <button type="submit" form="vipForm" class="bg-red-600 hover:bg-red-700 transition w-full py-4 rounded-xl text-xl font-bold tracking-wider uppercase shadow-lg shadow-red-950">CONFIRMAR COMPRA</button>
+            </div>
+        </section>
+
+        <section class="bg-zinc-900 p-6 rounded-2xl shadow-lg border border-zinc-800 flex flex-col justify-between">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-yellow-400">🎛️ Soundboard</h2>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <button class="efecto bg-zinc-800 border border-zinc-700 p-5 rounded-xl text-lg font-bold transition duration-200" data-sound="Riff de Guitarra">Riff de Guitarra</button>
+                    <button class="efecto bg-zinc-800 border border-zinc-700 p-5 rounded-xl text-lg font-bold transition duration-200" data-sound="Doble Bombo">Doble Bombo</button>
+                    <button class="efecto bg-zinc-800 border border-zinc-700 p-5 rounded-xl text-lg font-bold transition duration-200" data-sound="Grito del Público">Grito del Público</button>
+                    <button class="efecto bg-zinc-800 border border-zinc-700 p-5 rounded-xl text-lg font-bold transition duration-200" data-sound="Fuego">Fuego</button>
+                </div>
+                <div class="bg-black border border-yellow-500 p-4 rounded-lg text-yellow-300 mb-6 min-h-[56px] flex items-center justify-center text-center font-mono text-sm uppercase tracking-wide">
+                    <span id="pantalla">Esperando efecto...</span>
+                </div>
+            </div>
+            <div>
+                <label class="block mb-2 font-semibold text-gray-200">Nivel de Distorsión</label>
+                <input type="range" id="distorsion" min="0" max="100" value="0" class="w-full accent-red-600 h-2 bg-black rounded-lg cursor-pointer">
+                <p id="nivelDistorsion" class="mt-2 text-gray-300 text-sm font-medium">Nivel de Distorsión: 0%</p>
+            </div>
+        </section>
+
+        <section class="bg-zinc-900 p-6 rounded-2xl shadow-lg border border-zinc-800 flex flex-col">
+            <h2 class="text-3xl font-bold mb-6 text-green-400">📋 Inventario del Stage Manager</h2>
+            <div class="mb-4">
+                <input type="text" id="busqueda" placeholder="Buscar equipo..." class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white text-sm focus:outline-none focus:border-green-500 transition">
+            </div>
+            <div class="flex-1 overflow-y-auto max-h-[320px] pr-2 bg-black p-2 rounded-xl border border-zinc-800">
+                <ul id="inventario" class="space-y-2">
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Amplificador Marshall</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Batería Tama</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Bajo ESP</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Cables XLR</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Pirotecnia</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Púas</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Micrófonos Shure</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Consola de Audio</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Luces LED</li>
+                    <li class="equipo bg-zinc-800 p-3 rounded-lg cursor-pointer transition text-sm font-medium">Pedales de Distorsión</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const nombre = document.getElementById("nombre");
+        const contador = document.getElementById("contador");
+        const zona = document.getElementById("zona");
+        const precio = document.getElementById("precio");
+        const vipForm = document.getElementById("vipForm");
+
+        nombre.addEventListener("input", function() {
+            const cantidad = nombre.value.length;
+            contador.textContent = `${cantidad}/20 caracteres`;
+            if (cantidad > 20) {
+                contador.classList.remove("text-gray-400");
+                contador.classList.add("text-red-500", "font-bold");
+            } else {
+                contador.classList.remove("text-red-500", "font-bold");
+                contador.classList.add("text-gray-400");
+            }
+        });
+
+        zona.addEventListener("change", function() {
+            if (zona.value) {
+                precio.textContent = `$${zona.value}`;
+            } else {
+                precio.textContent = "$0";
+            }
+        });
+
+        vipForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            if (nombre.value.trim() === "") {
+                alert("ERROR: Debes escribir un nombre");
+            } else {
+                alert("Compra realizada con éxito ⚡");
+            }
+        });
+
+        const botones = document.querySelectorAll(".efecto");
+        const pantalla = document.getElementById("pantalla");
+        const distorsion = document.getElementById("distorsion");
+        const nivelDistorsion = document.getElementById("nivelDistorsion");
+
+        botones.forEach(function(boton) {
+            boton.addEventListener("click", function() {
+                botones.forEach(function(b) {
+                    b.className = "efecto bg-zinc-800 border border-zinc-700 p-5 rounded-xl text-lg font-bold transition duration-200 text-white";
+                });
+                boton.className = "efecto bg-yellow-400 border border-yellow-400 p-5 rounded-xl text-lg font-bold transition duration-200 text-black shadow-lg shadow-yellow-500/20";
+                const sonido = boton.getAttribute("data-sound");
+                pantalla.textContent = `Reproduciendo: [${sonido}]`;
+            });
+        });
+
+        distorsion.addEventListener("input", function() {
+            nivelDistorsion.textContent = `Nivel de Distorsión: ${distorsion.value}%`;
+        });
+
+        const busqueda = document.getElementById("busqueda");
+        const equipos = document.querySelectorAll(".equipo");
+
+        busqueda.addEventListener("input", function() {
+            const texto = busqueda.value.toLowerCase();
+            equipos.forEach(function(equipo) {
+                const nombreEquipo = equipo.textContent.toLowerCase();
+                if (nombreEquipo.includes(texto)) {
+                    equipo.style.setProperty("display", "block", "important");
+                } else {
+                    equipo.style.setProperty("display", "none", "important");
+                }
+            });
+        });
+
+        equipos.forEach(function(equipo) {
+            equipo.addEventListener("click", function() {
+                if (equipo.style.color === "rgb(34, 197, 94)") {
+                    equipo.style.removeProperty("color");
+                    equipo.style.removeProperty("text-decoration");
+                } else {
+                    equipo.style.setProperty("color", "#22c55e", "important");
+                    equipo.style.setProperty("text-decoration", "line-through", "important");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
